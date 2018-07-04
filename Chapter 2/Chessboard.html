@@ -1,0 +1,33 @@
+<html>
+<script>
+	let startChar = "#";
+	let nextChar = "#";
+	let output = "";
+	for (let row = 1; row <= 8; row++) {
+		if (row % 2 != 0) {
+			startChar = " ";
+		}
+		else {
+			startChar = "#";
+		}
+		
+		for (let column = 2; column <= 8; column++) {
+			if ((startChar == " ") && (column % 2 == 0)) {
+				nextChar = "#";
+			}
+			else if ((startChar == "#") && (column % 2 == 0)) {
+				nextChar = " ";
+			}
+			else if ((startChar == " ") && (column % 2 != 0)) {
+				nextChar = " ";
+			}
+			else if ((startChar == "#") & (column % 2 != 0)) {
+				nextChar = "#";
+			}
+			output = output + nextChar;
+		}
+		console.log(startChar + output);	
+		output = "";
+	}
+</script>
+</html>
