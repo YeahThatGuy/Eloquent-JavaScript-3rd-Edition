@@ -1,0 +1,26 @@
+<html>
+<script>
+
+	var even = 0;
+	var odd = 1;
+	function isEven(testNumber) {
+		if (testNumber == even) {
+			return true;
+		}
+		if (testNumber == odd) {
+			return false;
+		}
+		else if (testNumber > even) {
+			return isEven(testNumber - 2);
+		}
+		else {
+			return isEven(-testNumber);
+		}
+	}
+
+	console.log(isEven(50));
+	console.log(isEven(75));
+	console.log(isEven(-1));
+
+</script>
+</html>

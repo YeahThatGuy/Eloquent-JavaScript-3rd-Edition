@@ -1,0 +1,48 @@
+<html>
+<script>
+	
+	function reverseArray(myArr) {
+		let reversedArr = [];
+		//create a backup of the input array in order to keep the original untouched when the pop is executed
+		let copiedArr = myArr.slice();
+		for (let i = copiedArr.length-1; i >= 0; i--) {
+			reversedArr.push(copiedArr.pop());
+		}
+		return reversedArr;
+	}
+
+	function reverseArrayInPlace(myArr) {
+		for (let i = 0; i < myArr.length; i++) {
+			// add an empty cell at position i, push the rest of the array to the right
+			myArr.splice(i, 0, " ");
+			// move the last element in array to position i, overwriting the empty cell
+			myArr.splice(i, 1, myArr[myArr.length-1]);
+			// remove the last element in array, since it was copied to a new position
+			myArr.pop();
+		}
+		return myArr;
+	}
+
+	var sampleArr = [1, 2, 3, 4];
+	console.log(reverseArray(sampleArr));
+	console.log(sampleArr);
+
+	var anotherArr = [1, 2, 3, 4];
+	console.log(reverseArrayInPlace(anotherArr));
+	console.log(anotherArr);
+
+	/*
+	sim test for reverseArrayInPlace on a small scale
+	var anotherArr = [1, 2, 3, 4, 5];
+	anotherArr.splice(0, 0, " ");
+	anotherArr.splice(0, 1, anotherArr[anotherArr.length-1]);
+	anotherArr.pop();
+	console.log(anotherArr);
+	anotherArr.splice(1, 0, " ");
+	anotherArr.splice(1, 1, anotherArr[anotherArr.length-1]);
+	anotherArr.pop();
+	console.log(anotherArr);
+	*/
+
+</script>
+</html>

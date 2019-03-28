@@ -1,0 +1,89 @@
+<html>
+<script>
+	
+	let list = {
+		value: 1,
+		rest: {
+			value: 2,
+			rest: {
+	  			value: 3,
+	  			rest: null
+			}
+		}
+	};
+
+	let anotherL = {
+		value: 0,
+		rest: list
+	};
+
+	function arrayToList(myArr) {
+				
+		let element = myArr.shift();
+
+		let node = {
+			value: element,
+			rest: null
+		};
+
+		if (myArr.length > 0) {
+			node = {
+				value: element,
+				rest: arrayToList(myArr)
+			};
+			
+		}
+		return node;
+	}
+
+	function listToArray(list) {
+		let tempArray = [];
+
+		//give cell an unlikely value, -infinity, for the purpose of checking the head, which falls outside of rest like the others
+		let cell = -Infinity;
+		
+		while (!isNaN(cell)) {
+			
+			if (cell == -Infinity) {
+				cell = list.value;
+				tempArray.push(cell);
+			}
+			
+			else {
+				list = Object.values(list).pop();
+
+				if (list == null) {
+					break;
+				}
+				else {
+					cell = list.value;
+					tempArray.push(cell);
+				}		
+			}
+		}
+		
+		return tempArray;	
+	}
+
+	//can't take function and null, fix that
+	function prepend(node, list) {
+		let convertedArray = listToArray(list);
+		convertedArray.unshift(node);
+		convertedArray = arrayToList(convertedArray);
+		return convertedArray;
+	}
+
+	function nth(list, index) {
+
+	}
+
+	console.log(arrayToList([10, 20, 30, 40]));
+	console.log(listToArray(arrayToList([10, 20, 30, 40])));
+	console.log(listToArray({value: 2, rest: {value: 3, rest: null}}));
+	console.log(prepend(5, prepend(20, null)));
+
+	//console.log(list);
+	//console.log(anotherL);
+
+</script>
+</html>
